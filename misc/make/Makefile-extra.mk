@@ -252,6 +252,17 @@ build/extra/cross-windows-mingw64/%: CMAKE_SYSTEM_PROCESSOR ?= AMD64
 build/extra/cross-windows-mingw64/%: CMAKE_CROSSCOMPILING_EMULATOR ?= wine
 build/extra/cross-windows-mingw64/%: export UPX_CONFIG_EXPECT_THREADS ?= OFF
 
+# cross compiler: Windows arm64 (aarch64) - Windows 11 on Arm64
+#   uses llvm-mingw, see https://github.com/mstorsjo/llvm-mingw
+#   (add the llvm-mingw "bin" directory to your PATH)
+build/extra/cross-windows-arm64/debug:   PHONY; $(call run_config_and_build,$@,Debug)
+build/extra/cross-windows-arm64/release: PHONY; $(call run_config_and_build,$@,Release)
+build/extra/cross-windows-arm64/%: export CC  = aarch64-w64-mingw32-clang   -static
+build/extra/cross-windows-arm64/%: export CXX = aarch64-w64-mingw32-clang++ -static
+build/extra/cross-windows-arm64/%: CMAKE_SYSTEM_NAME ?= Windows
+build/extra/cross-windows-arm64/%: CMAKE_SYSTEM_PROCESSOR ?= ARM64
+build/extra/cross-windows-arm64/%: export UPX_CONFIG_EXPECT_THREADS ?= OFF
+
 # cross compiler: macOS arm64 (aarch64)
 build/extra/cross-darwin-arm64/debug:   PHONY; $(call run_config_and_build,$@,Debug)
 build/extra/cross-darwin-arm64/release: PHONY; $(call run_config_and_build,$@,Release)
