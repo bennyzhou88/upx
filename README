@@ -44,6 +44,20 @@ UPX may be distributed and used freely, even with commercial applications.
 See the UPX License Agreements for details.
 
 
+SUPPORTED HOST PLATFORMS: WINDOWS 11 ON ARM64
+=============================================
+
+UPX builds and runs natively on Windows 11 on Arm64 (AArch64).
+
+  - A ready-to-use native binary is in dist/win-arm64/upx.exe
+    (see dist/win-arm64/README.md).
+  - To cross-compile it yourself with llvm-mingw, run:
+        make build/extra/cross-windows-arm64/release
+
+UPX can pack Arm64 Windows programs (format "win64/arm64") on every host
+platform.
+
+
 SECURITY CONTEXT
 ================
 
